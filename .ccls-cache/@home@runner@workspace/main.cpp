@@ -1,75 +1,40 @@
-//This program calculates the Area.
+// Size Prediction
+// This program will predict the size of a population of organisms.
 #include <iostream>
-#include <cmath>
-#include <numbers>
+#include <iomanip> 
 using namespace std;
 
 int main()
 {
+    int days;
+    double startSize, dailyIncrease;
 
-//Variables
-int length, width, radius, height, base;
-double pi = 3.141592653589793;
-int choice; 
-  
-  cout << "Choose an option (1-4): "<< endl;
- 
-  
-  cout << "1. Calculate the Area of a Circle."<<endl;
-  cout << "2. Calculate the Area of a Rectangle."<<endl;
-  cout << "3. Calculate the Area of a Triangle."<<endl;
-  cout << "4. Exit."<<endl;
-  
-  
-  cin >> choice; 
+    cout << "Enter the starting population of organisms: ";
+    cin >> startSize;
+    while (startSize < 2) {
+       cout<< "Error: starting population must be at least 2. Enter again: ";
+       cin>> startSize;
+     }
+    cout<< "Enter the daily increase: ";
+    cin>> dailyIncrease;
+    while (dailyIncrease < 0) {
+        cout<< "Error: number can not be less than 0. Enter again: ";
+        cin>> dailyIncrease;
+     }
+     cout<< "Enter the number of days to be multiplied: ";
+     cin>> days;
+     
+     while (days <1){
+        cout<<"Error: number of days must be at least 1. Enter again: ";
+        cin>> days;
+     }
+     double rate = dailyIncrease / 100.0;
 
- if (choice <= 0 || choice > 4 )
- {
-   cout << "Invalid entry. Choose a number between 1-4."<<endl;
-   return 0;
- }
- switch(choice)
-   {
-     case 1:
-       
-       cout <<"Enter the radius of the circle:"<< endl;
-       cin>> radius;
-      if(radius <0)
-      { 
-         cout << "Invalid entry. Radius can not be less than zero."<< endl;
-         return 0;
+      cout<< "Day         Population"<< endl;
+      cout<< "........................."<< endl;
+     for (int i =1; i <= days; i++){
+        cout << i <<"       "<< fixed << setprecision(2) << startSize <<endl;
+        startSize += (startSize * rate);
       }
-       cout<< "Area:"<< pi * radius * radius <<endl;
-      break;
-     case 2: 
-       cout << "Enter the length of the rectangle:"<<endl;
-       cout << "Enter the Width of the Rectangle:"<<endl;
-       cin >> length;
-       cin >> width;
-      if (length < 0 || width <0)
-      {
-       cout<< "Invalid entry. Length and width can not be less than zero." << endl;
-        return 0;
-      }
-       cout<<"Area:"<< length * width << endl;
-      break;
-     case 3:
-       cout << "Enter the base of the triangle:"<<endl;
-       cout<< " Enter the height of the triangle:"<<endl;
-       cin >> base; 
-       cin >> height;
-      if (base <0 || height <0)
-      {
-        cout<< "Invalid Entry. Base and height can not be less than zero." << endl;
-        return 0;
-      }
-       cout <<"Area:"<< 0.5 * base * height << endl;
-      break;
-     case 4:
-       cout<< "You have exited the program."<< endl;
-     
-   }
-     
-      
-  return 0;
+      return 0;
 }
