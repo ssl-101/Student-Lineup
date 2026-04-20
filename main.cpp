@@ -1,57 +1,28 @@
-//This program will count the amount of students on the list.
-//Program will also name first and last student.
+//this program will display
+//a population bar chart.
 #include <iostream>
 #include <fstream>
-#include <string> 
 using namespace std;
 
-int main()
+int main;
 {
- string file;
- ifstream inFile;
+  string file;
+  ifstream inFile;
 
+  const perPeople = 1000;
 
-  cout<< "Enter the file name:";
-  cin >> file;
+ cout<< "Enter file name: "<<endl;
+ cin >> file ;
 
   inFile.open(file);
 
   if (!inFile) {
-    cout<< "Error with opening file!"<<endl;
-    return 1;
+    cout<< "Error opening file"<<endl;
+      return 1;
   }
-  
-    // starting counter at zero
-  string student, first, last;
-    int count = 0;
 
-    if (inFile >> student)
-       {
-      
-        first = student;
-        last = student;
-           count++;
-       }
-    while (inFile >> student)
-      {
-          count++;
+  cout<< "PEOPLE DISPLAY CHART "<< endl;
+  cout<< "Every * displays 1000 people" <<endl;
 
-        if (student < first)
-            first = student;
-        if (student > last)
-            last = student;
-        
-      }
-    //output 
-
-    cout<< "Number of students: "<< count << endl;
-    cout<< "First student in line: "<< first << endl;
-    cout << "Last student in line: " << last << endl;
-
-    inFile.close();
-      
-  
-
-  return 0;
   
 }
