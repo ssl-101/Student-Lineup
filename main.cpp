@@ -25,19 +25,22 @@ int main()
     int count = 0;
 
     if (inFile >> student)
+       {
+      
+        first = student;
+        last = student;
+           count++;
+       }
+    while (inFile >> student)
+      {
+          count++;
 
-    {
-      count++;
+        if (student < first)
+            first = student;
+        if (student > last)
+            last = student;
         
-        if(student < first)
-           first = student;
-
-        
-        if(student > last)
-           last = student;
-   
-    }
-    
+      }
     //output 
 
     cout<< "Number of students: "<< count << endl;
@@ -46,7 +49,7 @@ int main()
 
     inFile.close();
       
-  }
+  
 
   return 0;
   
