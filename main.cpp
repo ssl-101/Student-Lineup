@@ -1,4 +1,5 @@
-//This program will order students alphabetically.
+//This program will count the amount of students on the list.
+//Program will also name first and last student.
 #include <iostream>
 #include <fstream>
 #include <string> 
