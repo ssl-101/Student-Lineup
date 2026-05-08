@@ -1,36 +1,57 @@
-//this program is a number guessing game
-//that uses a random number generator. 
+//This program will order students alphabetically.
 #include <iostream>
-#include <random>
+#include <fstream>
+#include <string> 
 using namespace std;
+
 int main()
 {
-  int randomNumber, inputNumber = 0, guessTotal= 0;
+ string file;
+ ifstream inFile;
 
-  //random generator
-  random_device rd;
-  mt19937 gen(rd());
-  uniform_int_distribution<> dist (1,25);
 
-  randomNumber= dist(gen);
+  cout<< "Enter the file name:";
+  cin >> file;
 
-  cout<<"Guess the number, 1 through 25: "<<endl;
-  
-  
-  while( inputNumber != randomNumber){
-   cin>> inputNumber;
-    guessTotal++;
+  inFile.open(file);
 
-    if (inputNumber < randomNumber)
-    {
-      cout<<" Nope! Guessed too low. Try again :"<<endl;
-    }
-     else if ( inputNumber > randomNumber)
-    {
-      cout<<"Nope! Guessed too high. Try again :"<<endl;
-    }
+  if (!inFile) {
+    cout<< "Error with opening file!"<<endl;
+    return 1;
   }
-    cout<<"Congrats! you got it in  " <<  guessTotal <<"  tries! "<<endl;
   
-  return 0; 
+    // starting counter at zero
+  string student, first, last;
+    int count = 0;
+
+    if (inFile >> student)
+       {
+      
+        first = student;
+        last = student;
+           count++;
+       }
+    while (inFile >> student)
+      {
+          count++;
+
+        if (student < first)
+            first = student;
+        if (student > last)
+            last = student;
+        
+      }
+    //output 
+
+    cout<< "Number of students: "<< count << endl;
+    cout<< "First student in line: "<< first << endl;
+    cout << "Last student in line: " << last << endl;
+
+    inFile.close();
+      
+  
+
+  return 0;
+  
 }
+
